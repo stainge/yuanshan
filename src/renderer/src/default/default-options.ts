@@ -113,7 +113,9 @@ export const exifFields: OptionLensValues[] = [
 		description: '{高度}',
 		show: false
 	},
-	{ key: 'Image Width', name: '图片宽度', type: 0, used: true, description: '{宽度}', show: false }
+	{ key: 'Image Width', name: '图片宽度', type: 0, used: true, description: '{宽度}', show: false },
+	{ key: 'GPSLongitude', name: '经度', type: 0, used: true, description: '{经度}', show: true },
+	{ key: 'GPSLatitude', name: '纬度', type: 0, used: true, description: '{纬度}', show: true }
 ]
 
 // 默认文本模板
