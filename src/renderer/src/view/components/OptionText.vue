@@ -95,7 +95,7 @@ const onChangeOrder = async (
 
 // 文字模版，内容的位置详情
 const textPositionsHeader = computed<[number, number, number]>(() => store.textPositionsHeader || [0.3, 0.5, 0.7])
-const textPositionsMiddle = computed<[number, number, number]>(() => store.textPositionsMiddle || [0.3, 0.5, 0.7])
+const textPositionsMiddle = computed<[number, number, number]>(() => store.textPositionsMiddle || [0.5, 0.5, 1.0])
 const textPositionsFooter = computed<[number, number, number]>(() => store.textPositionsFooter || [0.3, 0.5, 0.7])
 
 const onChangeTextPosition = (position: TextTemplatePositionEnum, value: number, index: number) => {
