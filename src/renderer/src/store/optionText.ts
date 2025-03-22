@@ -135,7 +135,7 @@ export const useOptionTextStore = defineStore(
 
 		// 文字模板的内容中线位置
 		const textPositionsHeader = ref<[number, number, number]>([0.3, 0.5, 0.7])
-		const textPositionsMiddle = ref<[number, number, number]>([0.3, 0.5, 0.7])
+		const textPositionsMiddle = ref<[number, number, number]>([0.5, 0.5, 1.0])
 		const textPositionsFooter = ref<[number, number, number]>([0.3, 0.5, 0.7])
 
 		const setTextPosition = (position: TextTemplatePositionEnum, value: [number, number, number]) => {
@@ -168,7 +168,7 @@ export const useOptionTextStore = defineStore(
 
 		const resetTextPosition = () => {
 			textPositionsHeader.value = [0.3, 0.5, 0.7]
-			textPositionsMiddle.value = [0.3, 0.5, 0.7]
+			textPositionsMiddle.value = [0.5, 0.5, 1.0]
 			textPositionsFooter.value = [0.3, 0.5, 0.7]
 		}
 

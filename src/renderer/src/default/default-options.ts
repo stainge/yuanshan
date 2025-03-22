@@ -56,9 +56,42 @@ export const defaultOptions = {
 
 // 默认相机参数
 export const exifFields: OptionLensValues[] = [
-	{ key: 'Make', name: 'Logo', type: 0, used: true, description: '{Logo}', show: true },
-	{ key: 'Model', name: '型号', type: 0, used: true, description: '{型号}', show: true },
-	{ key: 'LensMake', name: '镜头Logo', type: 0, used: true, description: '{镜头Logo}', show: true },
+	{
+		key: 'Make',
+		name: 'Logo',
+		type: 0,
+		used: true,
+		description: '{Logo}',
+		show: true,
+		forcedUsed: true,
+		italic: true,
+		bold: true,
+		color: '#ffffff',
+		size: 0.4,
+		font: 'Sans'
+	},
+	{
+		key: 'Model',
+		name: '型号',
+		type: 0,
+		used: true,
+		description: '{型号}',
+		show: true,
+		forcedUsed: true,
+		italic: false,
+		color: '#ffffff',
+		size: 0.4,
+		font: 'Sans',
+		prefix: ' '
+	},
+	{
+		key: 'LensMake',
+		name: '镜头Logo',
+		type: 0,
+		used: true,
+		description: '{镜头Logo}',
+		show: true
+	},
 	{
 		key: 'LensModel',
 		name: '镜头型号',
@@ -67,19 +100,56 @@ export const exifFields: OptionLensValues[] = [
 		description: '{镜头型号}',
 		show: true
 	},
-	{ key: 'ExposureTime', name: '快门', type: 0, used: true, description: '{快门}s', show: true },
-	{ key: 'FNumber', name: '光圈', type: 0, used: true, description: 'f/{光圈}', show: true },
-	{ key: 'ISOSpeedRatings', name: 'ISO', type: 0, used: true, description: '{ISO}', show: true },
-	{ key: 'FocalLength', name: '焦距', type: 0, used: true, description: '{焦距}mm', show: true },
+	{
+		key: 'ExposureTime',
+		name: '快门',
+		type: 0,
+		used: true,
+		description: '{快门}s',
+		show: true,
+		suffix: 's'
+	},
+	{
+		key: 'FNumber',
+		name: '光圈',
+		type: 0,
+		used: true,
+		description: 'f/{光圈}',
+		show: true
+	},
+	{
+		key: 'ISOSpeedRatings',
+		name: 'ISO',
+		type: 0,
+		used: true,
+		description: '{ISO}',
+		show: true
+	},
+	{
+		key: 'FocalLength',
+		name: '焦距',
+		type: 0,
+		used: true,
+		description: '{焦距}mm',
+		show: true
+	},
 	{
 		key: 'FocalLengthIn35mmFilm',
 		name: '等效焦距',
 		type: 0,
 		used: true,
 		description: '{等效焦距}mm',
+		show: true,
+		suffix: 'mm'
+	},
+	{
+		key: 'ExposureProgram',
+		name: '档位',
+		type: 0,
+		used: true,
+		description: '{档位}',
 		show: true
 	},
-	{ key: 'ExposureProgram', name: '档位', type: 0, used: true, description: '{档位}', show: true },
 	{
 		key: 'ExposureMode',
 		name: '曝光补偿',
@@ -96,7 +166,14 @@ export const exifFields: OptionLensValues[] = [
 		description: '{测光模式}',
 		show: true
 	},
-	{ key: 'WhiteBalance', name: '白平衡', type: 0, used: true, description: '{白平衡}', show: true },
+	{
+		key: 'WhiteBalance',
+		name: '白平衡',
+		type: 0,
+		used: true,
+		description: '{白平衡}',
+		show: true
+	},
 	{
 		key: 'DateTimeOriginal',
 		name: '拍摄日期',
@@ -113,9 +190,30 @@ export const exifFields: OptionLensValues[] = [
 		description: '{高度}',
 		show: false
 	},
-	{ key: 'Image Width', name: '图片宽度', type: 0, used: true, description: '{宽度}', show: false },
-	{ key: 'GPSLongitude', name: '经度', type: 0, used: true, description: '{经度}', show: true },
-	{ key: 'GPSLatitude', name: '纬度', type: 0, used: true, description: '{纬度}', show: true }
+	{
+		key: 'Image Width',
+		name: '图片宽度',
+		type: 0,
+		used: true,
+		description: '{宽度}',
+		show: false
+	},
+	{
+		key: 'GPSLongitude',
+		name: '经度',
+		type: 0,
+		used: true,
+		description: '{经度}',
+		show: true
+	},
+	{
+		key: 'GPSLatitude',
+		name: '纬度',
+		type: 0,
+		used: true,
+		description: '{纬度}',
+		show: true
+	}
 ]
 
 // 默认文本模板
@@ -133,12 +231,12 @@ export const defTextTemps: OptionTextTemplateValues[] = [
 		position: TextTemplatePositionEnum.MIDDLE
 	},
 	{
-		key: '镜头logo型号',
-		name: '镜头logo型号',
+		key: '焦距光圈快门ISO',
+		name: '焦距光圈快门ISO',
 		type: 0,
-		content: ['FocalLength', 'FNumber', 'ExposureTime', 'ISOSpeedRatings'],
-		font: defaultOptions.fontFamily,
-		size: 0.3,
+		content: ['FocalLengthIn35mmFilm', 'FNumber', 'ExposureTime', 'ISOSpeedRatings'],
+		font: 'Sans',
+		size: 0.35,
 		color: defaultOptions.fontColor,
 		italic: defaultOptions.fontItalic,
 		bold: defaultOptions.fontBold,
@@ -155,7 +253,8 @@ export const outputFormatOptions = [
 	{
 		label: OutputFormatEnum.JPG,
 		value: 'image/jpeg'
-	}, {
+	},
+	{
 		label: OutputFormatEnum.WEBP,
 		value: 'image/webp'
 	}

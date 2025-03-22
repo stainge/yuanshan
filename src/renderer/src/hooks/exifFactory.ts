@@ -80,13 +80,17 @@ class ExifFactory {
     if (key === 'Make') {
       // 去掉第一个空格之后的内容 NIKON CORPORATION => NIKON
       return data?.split(' ')[0]
+      // 变成仅首字母大写的格式 NIKON => Nikon
+      .toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
     }
     if (key === 'Model') {
       // 去掉第一个空格之前的内容 NIKON Z 6_2 => Z 6_2
-      return data
+      if(data?.split(' ')[0] === "NIKON") { // 仅在存在NIKON时去除
+        return data
         ?.replace(data?.split(' ')[0] + ' ', '')
         .replace('_', '·')
         .replace(/[Zz]/g, 'ℤ')
+      }
     }
     if (key === 'FocalLength') {
       // 去掉空格 56 mm => 56mm
