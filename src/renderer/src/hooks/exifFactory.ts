@@ -73,6 +73,7 @@ class ExifFactory {
 
   // 获取对应的数据
   get(key: string) {
+    const oridata = this.exif
     const data = this.exif[key]
     if (key === 'Image Height' || key === 'Image Width') {
       return Number(data?.replace('px', ''))
@@ -95,6 +96,16 @@ class ExifFactory {
     if (key === 'FocalLength') {
       // 去掉空格 56 mm => 56mm
       return data?.replace(' ', '')
+    }
+    if (key === 'FocalLengthIn35mmFilm' && !data) {
+      // 计算FocalLengthIn35mmFilm为空时的等效焦距
+      const FocalLength = Number(oridata['FocalLength']?.replace('mm', ''))
+      let scale = 1
+        if (oridata['Model']?.includes('OM-1MarkII')) {
+          scale = 2
+        }
+      const FocalLengthIn35mmFilm = FocalLength * scale
+      return FocalLengthIn35mmFilm
     }
     if (key === 'ISOSpeedRatings') {
       // 100 => ISO100
