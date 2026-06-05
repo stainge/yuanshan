@@ -80,7 +80,22 @@ class ExifFactory {
 
 	// 获取对应的数据
 	get(key: string) {
+    const oridata = this.exif
 		const data = this.exif[key]
+    if (key === 'FocalLengthIn35mmFilm') {
+      if(!data) {
+        // 计算FocalLengthIn35mmFilm为空时的等效焦距
+        const FocalLength = Number(oridata['FocalLength']?.replace('mm', ''))
+        let scale = 1
+          if (oridata['Model']?.includes('OM-1MarkII')) {
+            scale = 2
+          }
+        const FocalLengthIn35mmFilm = FocalLength * scale
+        return FocalLengthIn35mmFilm + 'mm'
+      } else {
+        return data?.replace(' ', '')
+      }
+    }
 		// 值缺失时返回 null，避免被拼接成 "ISOnull" 等再绘制上去
 		if (data === null || data === undefined || data === '') {
 			return null
@@ -88,6 +103,12 @@ class ExifFactory {
 		if (key === 'Image Height' || key === 'Image Width') {
 			return Number(data?.replace('px', ''))
 		}
+    if (key === 'Make') {
+      // 去掉第一个空格之后的内容 NIKON CORPORATION => NIKON
+      return data?.split(' ')[0]
+      // 变成仅首字母大写的格式 NIKON => Nikon
+      .toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
+    }
 		if (key === 'Model') {
 			const make = (this.exif['Make'] || '').toUpperCase()
 			// 保留型号原文（不去除品牌前缀），仅做风格化处理
@@ -102,6 +123,10 @@ class ExifFactory {
 		if (key === 'ISOSpeedRatings') {
 			return `ISO${data}`
 		}
+    if (key === 'FocalLength') {
+      // 去掉空格 56 mm => 56mm
+      return data?.replace(' ', '')
+    }
 		// 其余字段原样返回
 		return data
 	}
