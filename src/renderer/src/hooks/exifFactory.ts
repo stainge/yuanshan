@@ -119,6 +119,10 @@ class ExifFactory {
 			}
 			return result
 		}
+      // 去掉第一个空格之前的内容 OLYMPUS M.300mm F4.0 => M.300mm F4.0
+		if (key === 'LensModel') {
+			return data?.replace(/OLYMPUS |OM /g,"")
+		}
 		// 仅 ISO 加前缀：100 => ISO100
 		if (key === 'ISOSpeedRatings') {
 			return `ISO${data}`
