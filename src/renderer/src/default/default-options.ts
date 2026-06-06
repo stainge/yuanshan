@@ -151,10 +151,10 @@ export const exifFields: OptionLensValues[] = [
   },
 	{
 		key: 'ExposureMode',
-		name: '曝光补偿',
+		name: '曝光模式',
 		type: 0,
 		used: true,
-		description: '{曝光补偿}',
+		description: '{曝光模式}',
 		show: true
 	},
 	{
@@ -212,7 +212,15 @@ export const exifFields: OptionLensValues[] = [
 		used: true,
 		description: '{纬度}',
 		show: true
-	}
+	},
+	{
+		key: 'ExposureBiasValue',
+		name: '曝光补偿',
+		type: 0,
+		used: true,
+		description: '{曝光补偿}',
+		show: true
+	}	
 ]
 
 // 默认文本模板
