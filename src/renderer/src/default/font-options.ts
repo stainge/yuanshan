@@ -4,7 +4,7 @@ import AliFY from '@renderer/assets/font/AliFY.ttf'
 import AliDLi from '@renderer/assets/font/AliDLi.ttf'
 import AliAgile from '@renderer/assets/font/AliAgile.ttf'
 
-import SuPer from '@renderer/assets/font/Super.ttf'
+import SuPer from '@renderer/assets/font/SuPer.ttf'
 import Free from '@renderer/assets/font/Free.ttf'
 import Ming from '@renderer/assets/font/Ming.ttf'
 import River from '@renderer/assets/font/River.ttf'
