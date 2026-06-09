@@ -93,7 +93,7 @@ class ExifFactory {
         const FocalLengthIn35mmFilm = FocalLength * scale
         return FocalLengthIn35mmFilm + 'mm'
       } else {
-        return data?.replace(' ', '')
+        return data.replace(/ /g, '')
       }
     }
 		// 值缺失时返回 null，避免被拼接成 "ISOnull" 等再绘制上去
